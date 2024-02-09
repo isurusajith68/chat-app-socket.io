@@ -1,13 +1,46 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
+/* body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+  height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+label {
+  color: #ffffff;
+  font-size: small;
+} */
+
+/* input {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 8px 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+} */
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #c28801;
+  } */
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 100vh;
+    border: 1px solid #ffffff;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #dfcbdb;
+  }
 }
