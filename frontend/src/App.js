@@ -1,16 +1,22 @@
+import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
+import ParticlesComponent from "./design/ParticlesComponent";
+
 
 function App() {
   const { authUser } = useAuthContext();
 
+
   return (
     <BrowserRouter>
       <Toaster position="top-center" />
+
+    {/* <ParticlesComponent /> */}
       <Routes>
         <Route
           path="/"

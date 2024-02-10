@@ -41,7 +41,7 @@ const Inbox = () => {
 
     try {
       setIsLoading(true);
-      await axios.post(
+      const res = await axios.post(
         `http://localhost:5000/api/messages/send/${clickedUser._id}`,
         {
           message: sentMessage,
@@ -52,6 +52,10 @@ const Inbox = () => {
       );
       setIsLoading(false);
       setSentMessage("");
+    
+      useConversation.setState({
+        messages: [...useConversation.getState().messages, res.data],
+      });
     } catch (error) {
       setIsLoading(false);
       console.log(error.response.data.error, "error");
@@ -78,11 +82,7 @@ const Inbox = () => {
             label: "text-white",
             zIndex: "-z-10",
           }}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              sendMessage();
-            }
-          }}
+          
           onChange={(e) => setSentMessage(e.target.value)}
           value={sentMessage}
           placeholder="Type to search..."
@@ -91,17 +91,14 @@ const Inbox = () => {
           onClick={() => sendMessage()}
           className="ml-2 flex h-full w-[40px] items-center justify-center rounded-xl bg-[#e7f1fe]"
         >
-          {
-            isLoading ? (
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary"></div>
-            ) : (
-              <LuSend
-                size={18}
-                className="pointer-events-none z-10 mb-0.5 flex-shrink-0 cursor-pointer text-primary hover:text-primary-500"
-              />
-            )
-          }
-         
+          {isLoading ? (
+            <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-primary"></div>
+          ) : (
+            <LuSend
+              size={18}
+              className="pointer-events-none z-10 mb-0.5 flex-shrink-0 cursor-pointer text-primary hover:text-primary-500"
+            />
+          )}
         </div>
       </div>
     </div>

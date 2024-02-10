@@ -13,12 +13,10 @@ const Home = () => {
           withCredentials: true,
         });
 
-  
         setUsers(res.data);
       } catch (error) {
-        if(error.response?.status === 401) {
+        if (error.response?.status === 401) {
           Logout();
-          
         }
       }
     };
@@ -26,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex h-screen items-center justify-center ">
+    <div className="flex h-screen items-center justify-center z-50">
       <SideBar users={users} />
       <div className="border bg-white"></div>
       <Inbox />

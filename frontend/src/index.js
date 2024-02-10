@@ -5,13 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { NextUIProvider } from "@nextui-org/react";
 import { AuthProvider } from "./context/AuthContext";
+import { SocketContextProvider } from "./context/Socket";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthProvider>
       <NextUIProvider>
-        <App />
+        <SocketContextProvider>
+          <App />
+        </SocketContextProvider>
       </NextUIProvider>
     </AuthProvider>
   </React.StrictMode>,

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useConversation } from "../../zustand/useConversation";
-
+import { useSocketContext } from "../../context/Socket";
 const Users = ({ user }) => {
   const [clickedUser, setClickedUser] = useState(null);
 
   const clickUser = () => {
     useConversation.setState({ clickedUser: user });
   };
+
+  const { onlineUsers } = useSocketContext();
 
   useConversation.subscribe(
     (clickedUser) => {
@@ -26,11 +28,21 @@ const Users = ({ user }) => {
       onClick={clickUser}
     >
       <div>
-        <img
+        {/* <img
           src={user.profilePic}
-          className="m-2 h-10 w-10 rounded-full border-2 border-white shadow-md"
+          className={
+            onlineUsers.includes(user._id)
+              ? "m-2  h-10 w-10 rounded-full border-2 border-green-500"
+              : "m-2 h-10 w-10 rounded-full border-2 border-white shadow-md"
+          }
           alt="profile"
-        />
+        /> */}
+        <div class="relative m-2">
+          <img class="h-10 w-10 rounded-full" src={user.profilePic} alt="" />
+          {onlineUsers.includes(user._id) && (
+            <span class="absolute left-7 top-0  h-3.5 w-3.5 rounded-full border-2 border-white bg-green-400 dark:border-gray-800"></span>
+          )}
+        </div>
       </div>
       <div className="font-mono text-sm font-semibold capitalize text-white">
         {user.username.length > 12

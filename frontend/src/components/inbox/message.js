@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { useConversation } from "../../zustand/useConversation";
 import { Spinner } from "@nextui-org/react";
 import axios from "axios";
+import { formattedTime } from "../../helper/formattedTime";
+
+import useListenMessages from "../../hooks/useListenMessages";
 
 function MessageComponent() {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -11,6 +14,8 @@ function MessageComponent() {
   const loggedInUser = JSON.parse(localStorage.getItem("authUser"));
 
   const clickedUser = useConversation((state) => state.clickedUser);
+
+  useListenMessages();
 
   useEffect(() => {
     if (clickedUser) {
@@ -23,28 +28,45 @@ function MessageComponent() {
               withCredentials: true,
             },
           );
-          useConversation.setState({ messages: res.data.messages });
+          useConversation.setState({ messages: res?.data?.messages });
           setIsLoading(false);
         } catch (error) {
           setIsLoading(false);
-          console.log(error.response.data.error, "error");
+          console.log(error?.response?.data?.error, "error");
         }
       };
       getMessage();
     }
   }, [clickedUser]);
 
+  const lastMessage = React.useRef();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (lastMessage.current) {
+        lastMessage.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  }, [messages]);
+
   return (
     <>
       {!isLoading ? (
         messages ? (
           messages?.map((message, index) => {
-            console.log(messages.senderId, "messages");
+            const shakeClass = message.shouldShake ? "shake" : "";
 
             return (
-              <>
+              <div
+                key={index}
+                ref={lastMessage}
+               
+              >
                 {message.senderId === loggedInUser.userId ? (
-                  <div className="my-4 flex flex-row-reverse items-start justify-start gap-2.5">
+                  <div
+                    key={index}
+                    className={`my-4 flex flex-row-reverse items-start justify-start gap-2.5 ${shakeClass}`}
+                  >
                     <img
                       className="h-8 w-8 rounded-full"
                       src={loggedInUser.profilePic}
@@ -56,7 +78,7 @@ function MessageComponent() {
                           {loggedInUser.username}
                         </span>
                         <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                          11:46
+                          {formattedTime(message.createdAt)}
                         </span>
                       </div>
                       <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
@@ -65,7 +87,10 @@ function MessageComponent() {
                     </div>
                   </div>
                 ) : (
-                  <div className="my-4 flex items-start justify-start gap-2.5">
+                  <div
+                    key={index}
+                    className={`my-4 flex items-start justify-start gap-2.5 ${shakeClass}`}
+                  >
                     <img
                       className="h-8 w-8 rounded-full"
                       src={clickedUser.profilePic}
@@ -77,7 +102,7 @@ function MessageComponent() {
                           {clickedUser.username}
                         </span>
                         <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                          11:46
+                          {formattedTime(message.createdAt)}
                         </span>
                       </div>
                       <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
@@ -86,7 +111,7 @@ function MessageComponent() {
                     </div>
                   </div>
                 )}
-              </>
+              </div>
             );
           })
         ) : (
