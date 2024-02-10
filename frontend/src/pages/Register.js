@@ -7,9 +7,10 @@ import { Radio, RadioGroup } from "@nextui-org/react";
 import { EyeFilledIcon } from "../icon/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../icon/EyeSlashFilledIcon";
 import { Button } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useAuthContext } from "../context/AuthContext";
 
 const formSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -25,27 +26,36 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(formSchema),
   });
+
+  const { setAuthUser } = useAuthContext();
+  const [isVisible, setIsVisible] = React.useState(false);
+  const toggleVisibility = () => setIsVisible(!isVisible);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
         "http://localhost:5000/api/auth/register",
         data,
+        {
+          withCredentials: true,
+        }
       );
+      
       toast.success("Register successfully");
+      localStorage.setItem("authUser", JSON.stringify(res.data));
+      setAuthUser(res.data);
+      navigate("/");
     } catch (error) {
       console.log(error.response.data.error);
       toast.error(error.response.data.error);
     }
   };
 
-  const [isVisible, setIsVisible] = React.useState(false);
-
-  const toggleVisibility = () => setIsVisible(!isVisible);
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       <form

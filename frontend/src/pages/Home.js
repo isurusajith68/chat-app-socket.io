@@ -1,17 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import SideBar from "../components/sidebar/sidebar";
-import Inbox from "../components/sidebar/inbox";
+import Inbox from "../components/inbox/inbox";
+import { Logout } from "../api/logout";
 const Home = () => {
+  const [users, setUsers] = useState([]);
+
   useEffect(() => {
     const getUser = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/users", {
           withCredentials: true,
         });
-        console.log(res.data);
+        setUsers(res.data);
       } catch (error) {
-        console.log(error.response.data.error);
+        if(error.response?.status === 401) {
+          Logout();
+          
+        }
       }
     };
     getUser();
@@ -19,7 +25,7 @@ const Home = () => {
 
   return (
     <div className="flex h-screen items-center justify-center ">
-      <SideBar />
+      <SideBar users={users} />
       <div className="border bg-white"></div>
       <Inbox />
     </div>

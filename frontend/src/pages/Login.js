@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import logo from "../assets/logo.png";
+import { useAuthContext } from "../context/AuthContext";
 
 const formSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -20,23 +21,31 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
     isTouchField,
   } = useForm({
     resolver: yupResolver(formSchema),
   });
 
+  const { setAuthUser } = useAuthContext();
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = React.useState(false);
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
         "http://localhost:5000/api/auth/login",
         data,
+        {
+          withCredentials: true,
+        },
       );
       console.log(res.status);
       if (res.status === 200) {
         toast.success("Login successfully");
+        localStorage.setItem("authUser", JSON.stringify(res.data));
+        setAuthUser(res.data);
         navigate("/");
       }
     } catch (error) {
@@ -45,9 +54,6 @@ const Login = () => {
     }
   };
 
-  const [isVisible, setIsVisible] = React.useState(false);
-
-  const toggleVisibility = () => setIsVisible(!isVisible);
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       <form
