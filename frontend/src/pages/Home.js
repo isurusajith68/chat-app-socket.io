@@ -12,6 +12,8 @@ const Home = () => {
         const res = await axios.get("http://localhost:5000/api/users", {
           withCredentials: true,
         });
+
+  
         setUsers(res.data);
       } catch (error) {
         if(error.response?.status === 401) {
