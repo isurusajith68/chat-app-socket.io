@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-2 fixed w-full z-50 flex h-screen items-center justify-center">
+    <div className="p-2 fixed w-full z-50 flex h-full items-center justify-center">
       <SideBar users={users} />
       <div className="border bg-white max-sm:hidden"></div>
       <Inbox />
