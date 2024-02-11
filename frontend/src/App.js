@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Toaster position="top-center" />
 
-    {/* <ParticlesComponent /> */}
+    <ParticlesComponent />
       <Routes>
         <Route
           path="/"
