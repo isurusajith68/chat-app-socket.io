@@ -21,8 +21,8 @@ const Sidebar = ({ users }) => {
     <div
       className={
         clickedUser
-          ? "flex h-[70%] flex-col justify-between rounded-lg bg-black p-5 max-md:hidden max-md:h-full max-md:w-full"
-          : "flex h-[70%] flex-col justify-between rounded-lg bg-black p-5 max-md:h-full max-md:w-full"
+          ? "flex h-full flex-col justify-between rounded-lg bg-black p-5 max-sm:hidden max-sm:h-full max-sm:w-full"
+          : "flex h-full flex-col justify-between rounded-lg bg-black p-5 max-sm:h-full max-sm:w-full"
       }
     >
       <div className="flex  items-start">

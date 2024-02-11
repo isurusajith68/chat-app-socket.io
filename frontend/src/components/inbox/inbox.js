@@ -17,7 +17,7 @@ const Inbox = () => {
 
   if (!clickedUser) {
     return (
-      <div className="flex h-[70%] w-[600px] min-w-16 flex-col justify-between rounded-lg bg-black p-5 max-md:hidden">
+      <div className="flex h-full w-full min-w-16 flex-col justify-between rounded-lg bg-black p-5 max-sm:hidden">
         <div className="flex h-full flex-col items-center justify-center">
           <img src={chat} alt="logo" className="h-20 w-20" />
           <h1 className="font-serif text-3xl  text-[#0975f1]">
@@ -70,15 +70,15 @@ const Inbox = () => {
     <div
       className={
         clickedUser
-          ? "flex h-[70%] w-[600px] min-w-16 flex-col justify-between rounded-lg bg-black p-5 max-md:h-full max-md:w-full "
-          : "flex h-[70%] w-[600px] min-w-16 flex-col justify-between rounded-lg bg-black p-5 max-md:hidden"
+          ? "flex h-full w-full  flex-col justify-between rounded-lg bg-black p-5 max-sm:h-full max-sm:w-full "
+          : "flex h-full w-full  flex-col justify-between rounded-lg bg-black p-5 max-sm:hidden"
       }
     >
       <div className="flex justify-between">
         <div
           className={
             clickedUser
-              ? "hidden items-center justify-between text-white max-md:flex"
+              ? "hidden items-center justify-between text-white max-sm:flex"
               : "hidden"
           }
           onClick={handleBack}
