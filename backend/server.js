@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: true,
+    origin: ["http://localhost:3000", "https://chat-app-ufu8.onrender.com/"],
     credentials: true,
   })
 );

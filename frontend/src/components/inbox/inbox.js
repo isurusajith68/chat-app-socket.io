@@ -85,7 +85,7 @@ const Inbox = () => {
           
           onChange={(e) => setSentMessage(e.target.value)}
           value={sentMessage}
-          placeholder="Type to search..."
+          placeholder="Type a message..."
         />
         <div
           onClick={() => sendMessage()}
