@@ -38,14 +38,10 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post(
-        "https://chat-app-mi6i.onrender.com/api/auth/register",
-        data,
-        {
-          withCredentials: true,
-        },
-      );
-      
+      const res = await axios.post("api/auth/register", data, {
+        withCredentials: true,
+      });
+
       toast.success("Register successfully");
       localStorage.setItem("authUser", JSON.stringify(res.data));
       setAuthUser(res.data);

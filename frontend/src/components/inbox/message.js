@@ -22,12 +22,9 @@ function MessageComponent() {
       const getMessage = async () => {
         try {
           setIsLoading(true);
-          const res = await axios.get(
-            `https://chat-app-mi6i.onrender.com/${clickedUser._id}`,
-            {
-              withCredentials: true,
-            },
-          );
+          const res = await axios.get(`api/messages/${clickedUser._id}`, {
+            withCredentials: true,
+          });
           useConversation.setState({ messages: res?.data?.messages });
           setIsLoading(false);
         } catch (error) {

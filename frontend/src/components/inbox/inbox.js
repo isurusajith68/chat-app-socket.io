@@ -42,7 +42,7 @@ const Inbox = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        `https://chat-app-mi6i.onrender.com/api/messages/send/${clickedUser._id}`,
+        `api/messages/send/${clickedUser._id}`,
         {
           message: sentMessage,
         },
@@ -52,7 +52,7 @@ const Inbox = () => {
       );
       setIsLoading(false);
       setSentMessage("");
-    
+
       useConversation.setState({
         messages: [...useConversation.getState().messages, res?.data],
       });
@@ -82,7 +82,6 @@ const Inbox = () => {
             label: "text-white",
             zIndex: "-z-10",
           }}
-          
           onChange={(e) => setSentMessage(e.target.value)}
           value={sentMessage}
           placeholder="Type a message..."

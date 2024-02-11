@@ -9,12 +9,9 @@ const Home = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get(
-          "https://chat-app-mi6i.onrender.com/api/users",
-          {
-            withCredentials: true,
-          },
-        );
+        const res = await axios.get("api/users", {
+          withCredentials: true,
+        });
 
         setUsers(res.data);
       } catch (error) {
@@ -27,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex h-screen items-center justify-center z-50">
+    <div className="z-50 flex h-screen items-center justify-center">
       <SideBar users={users} />
       <div className="border bg-white"></div>
       <Inbox />

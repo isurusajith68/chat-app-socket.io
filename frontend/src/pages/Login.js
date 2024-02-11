@@ -34,13 +34,9 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post(
-        "https://chat-app-mi6i.onrender.com/api/auth/login",
-        data,
-        {
-          withCredentials: true,
-        },
-      );
+      const res = await axios.post("api/auth/login", data, {
+        withCredentials: true,
+      });
       console.log(res.status);
       if (res.status === 200) {
         toast.success("Login successfully");
