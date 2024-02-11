@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
-import ParticlesComponent from "./design/ParticlesComponent";
+// import ParticlesComponent from "./design/ParticlesComponent";
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Toaster position="top-center" />
 
-    <ParticlesComponent />
+    {/* <ParticlesComponent /> */}
       <Routes>
         <Route
           path="/"
