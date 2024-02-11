@@ -1,39 +1,51 @@
-.scrollbar::-webkit-scrollbar {
-  width: 20px;
-  height: 20px;
-}
-
-.scrollbar::-webkit-scrollbar-track {
-  border-radius: 100vh;
-  background: #c28801;
-}
-
-.scrollbar::-webkit-scrollbar-thumb {
-  background: #e0cbcb;
-  border-radius: 100vh;
-  border: 3px solid #f6f7ed;
-}
-
-.scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #c0a0b9;
-}
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.borderRotation_dark_mode {
+  position: relative;
+  background: none;
+  border: 0;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: -1;
+  cursor: pointer;
 }
 
-.scroll-btn {
-  position: fixed;
-  width: 100%;
-  left: 94%;
-  bottom: 80px;
-  height: 20px;
-  font-size: 3rem;
-  z-index: 999;
-  cursor: pointer;
-  color: white;
+.borderRotation_dark_mode:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 100%;
+  border: 2px dashed limegreen;
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.test {
+  animation: rotate2 2s linear infinite;
+  animation-play-state: paused;
+}
+.test:hover {
+  animation-play-state: running;
+  
+}
+@keyframes rotate2 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

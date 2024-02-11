@@ -1,22 +1,30 @@
 import { useDarkModeContext } from "../context/DarkModeContext";
-import { BsMoonStarsFill } from "react-icons/bs";
+import { BsFillMoonStarsFill } from "react-icons/bs";
 import { IoMdSunny } from "react-icons/io";
 const DarkMode = () => {
   const { darkMode, setDarkMode } = useDarkModeContext();
 
   return (
-    <div className="fixed bottom-[80px] left-[94%] z-[999] h-[20px]  w-full max-md:left-[85%]">
+    <div className="fixed bottom-[100px] left-[94%] z-[999] h-[20px]  w-full max-md:left-[85%]">
       <div
-        className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white  shadow-md dark:bg-gray-800 dark:text-white"
+        className="borderRotation_dark_mode"
         onClick={() => {
           setDarkMode(!darkMode);
         }}
       >
-        {darkMode ? (
-          <IoMdSunny style={{ color: "yellow", fontSize: "30px" }} />
-        ) : (
-          <BsMoonStarsFill style={{ color: "black", fontSize: "30px" }} />
-        )}
+        <div className="flex h-12 w-12  items-center justify-center rounded-full">
+          {darkMode ? (
+            <IoMdSunny
+              className="test"
+              style={{ color: "yellow", fontSize: "25px" }}
+            />
+          ) : (
+            <BsFillMoonStarsFill
+              className="test"
+              style={{ color: "darkorange", fontSize: "20px" }}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
 import DarkMode from "./components/darkMode";
 import { useDarkModeContext } from "./context/DarkModeContext";
-
+import "./App.css";
 function App() {
   const { authUser } = useAuthContext();
 
