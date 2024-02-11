@@ -35,7 +35,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        "https://chat-app-ufu8.onrender.com/api/auth/login",
+        "https://chat-app-mi6i.onrender.com/api/auth/login",
         data,
         {
           withCredentials: true,

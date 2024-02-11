@@ -3,7 +3,7 @@ export const Logout = async () => {
 
   try {
     const res = await axios.post(
-      "https://chat-app-ufu8.onrender.com/api/auth/logout",
+      "https://chat-app-mi6i.onrender.com/api/auth/logout",
       {
         withCredentials: true,
       },

@@ -10,7 +10,7 @@ const Home = () => {
     const getUser = async () => {
       try {
         const res = await axios.get(
-          "https://chat-app-ufu8.onrender.com/api/users",
+          "https://chat-app-mi6i.onrender.com/api/users",
           {
             withCredentials: true,
           },
