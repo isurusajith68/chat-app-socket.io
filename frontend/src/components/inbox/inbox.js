@@ -54,11 +54,11 @@ const Inbox = () => {
       setSentMessage("");
     
       useConversation.setState({
-        messages: [...useConversation.getState().messages, res.data],
+        messages: [...useConversation.getState().messages, res?.data],
       });
     } catch (error) {
       setIsLoading(false);
-      console.log(error.response.data.error, "error");
+      console.log(error?.response?.data?.error, "error");
     }
   };
 

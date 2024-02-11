@@ -8,8 +8,8 @@ import useListenMessages from "../../hooks/useListenMessages";
 
 function MessageComponent() {
   const [isLoading, setIsLoading] = React.useState(false);
-
-  const messages = useConversation((state) => state.messages);
+  const [messages, setMessages] = React.useState([]);
+  // const messages = useConversation((state) => state.messages);
 
   const loggedInUser = JSON.parse(localStorage.getItem("authUser"));
 
@@ -28,7 +28,8 @@ function MessageComponent() {
               withCredentials: true,
             },
           );
-          useConversation.setState({ messages: res?.data?.messages });
+          // useConversation.setState({ messages: res?.data?.messages });
+          setMessages(res?.data?.messages);
           setIsLoading(false);
         } catch (error) {
           setIsLoading(false);
@@ -53,7 +54,7 @@ function MessageComponent() {
     <>
       {!isLoading ? (
         messages ? (
-          messages?.map((message, index) => {
+          messages.map((message, index) => {
             const shakeClass = message.shouldShake ? "shake" : "";
 
             return (
