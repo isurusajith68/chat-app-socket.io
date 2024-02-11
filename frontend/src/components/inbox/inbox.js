@@ -6,7 +6,7 @@ import { useConversation } from "../../zustand/useConversation";
 import chat from "../../assets/chat.png";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-
+import { IoArrowBackCircle } from "react-icons/io5";
 const Inbox = () => {
   const [sentMessage, setSentMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
@@ -17,7 +17,7 @@ const Inbox = () => {
 
   if (!clickedUser) {
     return (
-      <div className="flex h-full w-full min-w-16 flex-col justify-between rounded-lg bg-black p-5 max-sm:hidden">
+      <div className="flex h-full w-full min-w-16 flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900 max-sm:hidden">
         <div className="flex h-full flex-col items-center justify-center">
           <img src={chat} alt="logo" className="h-20 w-20" />
           <h1 className="font-serif text-3xl  text-[#0975f1]">
@@ -70,11 +70,11 @@ const Inbox = () => {
     <div
       className={
         clickedUser
-          ? "flex h-full w-full  flex-col justify-between rounded-lg bg-black p-5 max-sm:h-full max-sm:w-full "
-          : "flex h-full w-full  flex-col justify-between rounded-lg bg-black p-5 max-sm:hidden"
+          ? "flex h-full w-full  flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900 max-sm:h-full max-sm:w-full "
+          : "flex h-full w-full  flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900 max-sm:hidden"
       }
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between rounded-md p-2 shadow-lg">
         <div
           className={
             clickedUser
@@ -83,19 +83,22 @@ const Inbox = () => {
           }
           onClick={handleBack}
         >
-          Back
+          <IoArrowBackCircle
+            size={30}
+            className="cursor-pointer text-[#0975f1] dark:text-white"
+          />
         </div>
+
         <div className="text-white">
-          To :
-          <span className="ml-1 capitalize text-[#0975f1]">
+          <span className=" ml-2 font-bold capitalize text-[#0975f1] dark:text-white">
             {clickedUser?.username}
           </span>
         </div>
       </div>
-      <div className="mb-3 mt-3 overflow-y-scroll px-2 text-white scrollbar">
+      <div className="scrollbar mb-3 mt-3 overflow-y-scroll px-2 text-white ">
         <MessageComponent />
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center drop-shadow-lg">
         <Input
           radius="lg"
           color="primary"
@@ -110,7 +113,7 @@ const Inbox = () => {
         />
         <div
           onClick={() => sendMessage()}
-          className="ml-2 flex h-full w-[40px] items-center justify-center rounded-xl bg-[#e7f1fe]"
+          className="ml-2 flex h-full w-[40px] cursor-pointer items-center justify-center rounded-xl bg-[#e7f1fe] hover:bg-[#d4e7f5] dark:bg-[#001833] dark:hover:bg-gray-600"
         >
           {isLoading ? (
             <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-primary"></div>

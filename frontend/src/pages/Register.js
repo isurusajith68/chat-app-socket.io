@@ -53,11 +53,16 @@ const Register = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
+    <div className="flex h-screen flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-900">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex w-96 flex-col gap-3"
+        className="flex w-96 flex-col gap-3 max-sm:px-10 "
       >
+        <div className="flex flex-col items-center justify-center ">
+          <h1 className="mb-3  font-serif text-xl font-bold text-black dark:text-white">
+            Chat with your friends
+          </h1>
+        </div>
         <Input
           size="md"
           variant="filled"
@@ -125,6 +130,7 @@ const Register = () => {
         <RadioGroup
           label="Select your gender"
           orientation="horizontal"
+          className="flex gap-2.5 text-sm"
           size="sm"
           {...register("gender")}
           errorMessage={errors.gender?.message}
@@ -144,9 +150,12 @@ const Register = () => {
         >
           Register
         </Button>
-        <span className="text-sm font-semibold">
+        <span className="text-sm font-semibold dark:text-white">
           Already have an account?{" "}
-          <Link to="/login" className="font-normal text-black underline">
+          <Link
+            to="/login"
+            className="font-normal text-black underline dark:text-white"
+          >
             Login
           </Link>
         </span>

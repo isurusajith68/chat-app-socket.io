@@ -3,14 +3,12 @@ import { SearchIcon } from "../../icon/SearchIcon";
 
 const searchBar = () => {
   return (
-    <div className="w-full">
+    <div className="w-full drop-shadow-lg">
       <Input
         radius="lg"
         color="primary"
         size="large"
-        classNames={{
-          label: "text-white",
-        }}
+        classNames="w-full"
         placeholder="Type to search..."
         startContent={
           <SearchIcon className="pointer-events-none mb-0.5 flex-shrink-0 text-primary " />

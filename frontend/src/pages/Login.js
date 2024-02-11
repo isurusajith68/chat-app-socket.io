@@ -51,14 +51,13 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center p-2">
+    <div className="fixed flex  h-full w-full flex-col items-center justify-center bg-neutral-100 px-10 dark:bg-neutral-900">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex w-96 flex-col gap-3"
+        className="flex w-96 flex-col gap-3 max-sm:px-10"
       >
         <div className="flex flex-col items-center justify-center ">
-          <img src={logo} alt="logo" className="h-24 w-24" />
-          <h1 className="mb-3  font-serif text-xl font-bold text-black">
+          <h1 className="mb-3  font-serif text-xl font-bold text-black dark:text-white">
             Chat with your friends
           </h1>
         </div>
@@ -99,14 +98,17 @@ const Login = () => {
         <Button
           type="submit"
           size="sm"
-          className="bg-black text-white"
+          className="bg-black font-bold text-white dark:bg-white dark:text-black"
           isLoading={isSubmitting}
         >
           {isSubmitting ? "Logging in..." : "Login"}
         </Button>
-        <span className="text-sm font-semibold">
+        <span className="text-sm font-semibold dark:text-white">
           Don't have an account?{" "}
-          <Link to="/signup" className="font-normal text-black underline">
+          <Link
+            to="/signup"
+            className="font-normal text-black underline dark:text-white"
+          >
             Sign up
           </Link>
         </span>

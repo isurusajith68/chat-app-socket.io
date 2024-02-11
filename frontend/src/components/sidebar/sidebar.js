@@ -21,14 +21,14 @@ const Sidebar = ({ users }) => {
     <div
       className={
         clickedUser
-          ? "flex h-full flex-col justify-between rounded-lg bg-black p-5 max-sm:hidden max-sm:h-full max-sm:w-full"
-          : "flex h-full flex-col justify-between rounded-lg bg-black p-5 max-sm:h-full max-sm:w-full"
+          ? "flex h-full flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900  max-sm:hidden max-sm:h-full max-sm:w-full"
+          : "flex  h-full flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900  max-sm:h-full max-sm:w-full"
       }
     >
       <div className="flex  items-start">
         <SearchBar />
       </div>
-      <div className="mt-3 h-full overflow-y-scroll p-2 scrollbar">
+      <div className="scrollbar mt-3 h-full overflow-y-scroll p-2">
         {users.length > 0 ? (
           users.map((i, k) => {
             return <Users key={k} user={i} />;
@@ -39,15 +39,15 @@ const Sidebar = ({ users }) => {
           </div>
         )}
       </div>
-      <div className="mt-5 flex items-end justify-between text-white">
-        <div>
+      <div className="mt-5 flex items-end justify-between text-white ">
+        <div className="rounded-full border border-[#0975f1] p-1">
           <CgLogOut
             color="#0975f1"
             onClick={logoutUser}
-            className="cursor-pointer hover:scale-110"
+            className="cursor-pointer hover:scale-110 "
           />
         </div>
-        <div>
+        <div className="rounded-full border border-[#0975f1] p-1">
           <IoIosShareAlt
             color="#0975f1"
             className="cursor-pointer hover:scale-110"

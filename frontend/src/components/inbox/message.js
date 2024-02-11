@@ -65,12 +65,12 @@ function MessageComponent() {
                       src={loggedInUser.profilePic}
                       alt="J"
                     />
-                    <div className="leading-1.5  flex w-full max-w-[320px] flex-col rounded-s-xl rounded-ee-xl  border-gray-200 bg-gray-100 p-4 dark:bg-gray-700">
+                    <div className="leading-1.5  flex w-full max-w-[320px] flex-col rounded-s-xl rounded-ee-xl  border-gray-200  bg-slate-200 p-4 dark:bg-neutral-700">
                       <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                        <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                        <span className="text-sm font-semibold capitalize text-gray-900 dark:text-white">
                           {loggedInUser.username}
                         </span>
-                        <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                        <span className="text-sm font-normal text-gray-500 dark:text-neutral-100">
                           {formattedTime(message.createdAt)}
                         </span>
                       </div>
@@ -89,9 +89,9 @@ function MessageComponent() {
                       src={clickedUser.profilePic}
                       alt="J"
                     />
-                    <div className="leading-1.5 flex w-full max-w-[320px] flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-gray-100 p-4 dark:bg-gray-700">
+                    <div className="leading-1.5 flex w-full max-w-[320px] flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-slate-200 p-4 dark:bg-neutral-700">
                       <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                        <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                        <span className="text-sm font-semibold capitalize text-gray-900 dark:text-white">
                           {clickedUser.username}
                         </span>
                         <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
@@ -108,8 +108,10 @@ function MessageComponent() {
             );
           })
         ) : (
-          <div className="flex h-full items-center justify-center">
-            <span>no messages yet</span>
+          <div className="flex h-full items-center justify-center ">
+            <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+              no messages yet
+            </span>
           </div>
         )
       ) : (
