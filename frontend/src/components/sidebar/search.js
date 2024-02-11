@@ -3,7 +3,7 @@ import { SearchIcon } from "../../icon/SearchIcon";
 
 const searchBar = () => {
   return (
-    <div>
+    <div className="w-full">
       <Input
         radius="lg"
         color="primary"

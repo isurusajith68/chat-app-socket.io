@@ -5,20 +5,30 @@ import { Spinner } from "@nextui-org/react";
 import { IoIosShareAlt } from "react-icons/io";
 import { CgLogOut } from "react-icons/cg";
 import { Logout } from "../../api/logout";
+import { useConversation } from "../../zustand/useConversation";
 
-const sidebar = ({ users }) => {
+const Sidebar = ({ users }) => {
   const logoutUser = () => {
     Logout();
     localStorage.removeItem("authUser");
     window.location.reload();
   };
 
+  const clickedUser = useConversation((state) => state.clickedUser);
+  console.log(clickedUser, "clickedUser");
+
   return (
-    <div className="flex h-[70%] flex-col justify-between rounded-lg bg-black p-5">
-      <div className="flex items-start">
+    <div
+      className={
+        clickedUser
+          ? "flex h-[70%] flex-col justify-between rounded-lg bg-black p-5 max-md:hidden max-md:h-full max-md:w-full"
+          : "flex h-[70%] flex-col justify-between rounded-lg bg-black p-5 max-md:h-full max-md:w-full"
+      }
+    >
+      <div className="flex  items-start">
         <SearchBar />
       </div>
-      <div className="scrollbar mt-3 h-full overflow-y-scroll p-2">
+      <div className="mt-3 h-full overflow-y-scroll p-2 scrollbar">
         {users.length > 0 ? (
           users.map((i, k) => {
             return <Users key={k} user={i} />;
@@ -47,4 +57,4 @@ const sidebar = ({ users }) => {
     </div>
   );
 };
-export default sidebar;
+export default Sidebar;

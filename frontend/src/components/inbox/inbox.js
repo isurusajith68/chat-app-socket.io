@@ -17,7 +17,7 @@ const Inbox = () => {
 
   if (!clickedUser) {
     return (
-      <div className="flex h-[70%] w-[600px] min-w-16 flex-col justify-between rounded-lg bg-black p-5">
+      <div className="flex h-[70%] w-[600px] min-w-16 flex-col justify-between rounded-lg bg-black p-5 max-md:hidden">
         <div className="flex h-full flex-col items-center justify-center">
           <img src={chat} alt="logo" className="h-20 w-20" />
           <h1 className="font-serif text-3xl  text-[#0975f1]">
@@ -62,13 +62,35 @@ const Inbox = () => {
     }
   };
 
+  const handleBack = () => {
+    window.location.reload();
+  };
+
   return (
-    <div className="flex h-[70%] w-[600px] min-w-16 flex-col justify-between rounded-lg bg-black p-5">
-      <div className="text-white">
-        To :
-        <span className="ml-1 capitalize text-[#0975f1]">
-          {clickedUser?.username}
-        </span>
+    <div
+      className={
+        clickedUser
+          ? "flex h-[70%] w-[600px] min-w-16 flex-col justify-between rounded-lg bg-black p-5 max-md:h-full max-md:w-full "
+          : "flex h-[70%] w-[600px] min-w-16 flex-col justify-between rounded-lg bg-black p-5 max-md:hidden"
+      }
+    >
+      <div className="flex justify-between">
+        <div
+          className={
+            clickedUser
+              ? "hidden items-center justify-between text-white max-md:flex"
+              : "hidden"
+          }
+          onClick={handleBack}
+        >
+          Back
+        </div>
+        <div className="text-white">
+          To :
+          <span className="ml-1 capitalize text-[#0975f1]">
+            {clickedUser?.username}
+          </span>
+        </div>
       </div>
       <div className="mb-3 mt-3 overflow-y-scroll px-2 text-white scrollbar">
         <MessageComponent />
