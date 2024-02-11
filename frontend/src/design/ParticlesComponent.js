@@ -132,10 +132,10 @@ export default function ParticlesComponent() {
         },
         particles: {
           color: {
-            value: "#000",
+            value: ["#000", "#0975f1"],
           },
           links: {
-            color: "#000",
+            color: ["#000", "#0975f1"],
             // color: "004d26",
             distance: 150,
             enable: true,
