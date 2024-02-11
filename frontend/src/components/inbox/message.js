@@ -23,7 +23,7 @@ function MessageComponent() {
         try {
           setIsLoading(true);
           const res = await axios.get(
-            `http://localhost:5000/api/messages/${clickedUser._id}`,
+            `https://chat-app-ufu8.onrender.com/${clickedUser._id}`,
             {
               withCredentials: true,
             },

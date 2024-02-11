@@ -39,11 +39,11 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://chat-app-ufu8.onrender.com/api/auth/register",
         data,
         {
           withCredentials: true,
-        }
+        },
       );
       
       toast.success("Register successfully");

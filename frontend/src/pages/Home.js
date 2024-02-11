@@ -9,9 +9,12 @@ const Home = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/users", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://chat-app-ufu8.onrender.com/api/users",
+          {
+            withCredentials: true,
+          },
+        );
 
         setUsers(res.data);
       } catch (error) {

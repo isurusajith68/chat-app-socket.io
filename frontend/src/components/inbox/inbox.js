@@ -42,7 +42,7 @@ const Inbox = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        `http://localhost:5000/api/messages/send/${clickedUser._id}`,
+        `https://chat-app-ufu8.onrender.com/api/messages/send/${clickedUser._id}`,
         {
           message: sentMessage,
         },
