@@ -66,6 +66,7 @@ const Login = () => {
           variant="filled"
           type="text"
           label="Email"
+          className="text-sm dark:text-white"
           placeholder="Enter your email"
           {...register("email")}
           touched={isTouchField}
@@ -76,6 +77,7 @@ const Login = () => {
           size="md"
           variant="filled"
           label="Password"
+          className="text-sm dark:text-white"
           placeholder="Enter your password"
           {...register("password")}
           errorMessage={errors.password?.message}

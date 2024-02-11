@@ -67,6 +67,7 @@ const Register = () => {
           size="md"
           variant="filled"
           type="text"
+          className="text-sm dark:text-white"
           label="Username"
           placeholder="Enter your username"
           {...register("username")}
@@ -77,6 +78,7 @@ const Register = () => {
           variant="filled"
           type="text"
           label="Email"
+          className="text-sm dark:text-white"
           placeholder="Enter your email"
           {...register("email")}
           errorMessage={errors.email?.message}
@@ -86,6 +88,7 @@ const Register = () => {
           size="md"
           variant="filled"
           label="Password"
+          className="text-sm dark:text-white"
           placeholder="Enter your password"
           {...register("password")}
           errorMessage={errors.password?.message}
@@ -108,6 +111,7 @@ const Register = () => {
         <Input
           size="md"
           variant="filled"
+          className="text-sm dark:text-white"
           label="Confirm Password"
           placeholder="Enter your confirm password"
           {...register("confirmPassword")}

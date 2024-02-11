@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDarkModeContext } from "../context/DarkModeContext";
 import { FaMoon } from "react-icons/fa6";
 import { IoMdSunny } from "react-icons/io";
@@ -10,6 +11,7 @@ const DarkMode = () => {
         className="borderRotation_dark_mode"
         onClick={() => {
           setDarkMode(!darkMode);
+          localStorage.setItem("darkMode", !darkMode);
         }}
       >
         <div className="flex h-12 w-12  items-center justify-center rounded-full">

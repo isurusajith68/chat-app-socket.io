@@ -35,7 +35,8 @@ label {
   } */
 
   .scrollbar::-webkit-scrollbar-thumb {
-    background: #ffffff;
+    background: #a69a9a ;
+    
     border-radius: 100vh;
     border: 1px solid #ffffff;
   }

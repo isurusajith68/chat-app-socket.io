@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "./search";
 import Users from "./users";
 import { Spinner } from "@nextui-org/react";
@@ -6,8 +6,11 @@ import { IoIosShareAlt } from "react-icons/io";
 import { CgLogOut } from "react-icons/cg";
 import { Logout } from "../../api/logout";
 import { useConversation } from "../../zustand/useConversation";
+import { ClipboardCopyButton } from "../shareModel";
 
 const Sidebar = ({ users }) => {
+  const [shareModel, setShareModel] = useState(false);
+
   const logoutUser = () => {
     Logout();
     localStorage.removeItem("authUser");
@@ -17,14 +20,23 @@ const Sidebar = ({ users }) => {
   const clickedUser = useConversation((state) => state.clickedUser);
   console.log(clickedUser, "clickedUser");
 
+  const openShareModal = () => {
+    setShareModel(true);
+    
+
+  };
+
   return (
     <div
+      // onClick={() => setShareModel(false)}
       className={
         clickedUser
           ? "flex h-full flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900  max-sm:hidden max-sm:h-full max-sm:w-full"
           : "flex  h-full flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900  max-sm:h-full max-sm:w-full"
       }
     >
+      {shareModel && <ClipboardCopyButton shareModel={setShareModel} />}
+
       <div className="flex  items-start">
         <SearchBar />
       </div>
@@ -49,8 +61,9 @@ const Sidebar = ({ users }) => {
         </div>
         <div className="rounded-full border border-[#0975f1] p-1">
           <IoIosShareAlt
+            onClick={openShareModal}
             color="#0975f1"
-            className="cursor-pointer hover:scale-110"
+            className="share-icon"
           />
         </div>
       </div>

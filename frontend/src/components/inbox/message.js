@@ -22,7 +22,7 @@ function MessageComponent() {
       const getMessage = async () => {
         try {
           setIsLoading(true);
-          const res = await axios.get(`api/messages/${clickedUser._id}`, {
+          const res = await axios.get(`api/messages/${clickedUser?._id}`, {
             withCredentials: true,
           });
           useConversation.setState({ messages: res?.data?.messages });

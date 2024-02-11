@@ -20,7 +20,7 @@ const Users = ({ user }) => {
   return (
     <div
       className={
-        clickedUser && clickedUser.clickedUser._id === user._id
+        clickedUser && clickedUser.clickedUser?._id === user._id
           ? "mt-1 flex cursor-pointer items-center gap-2 rounded-lg bg-[#0975f1] shadow-md "
           : "mt-1 flex cursor-pointer items-center gap-2 rounded-lg shadow-lg hover:bg-gray-100 dark:hover:bg-neutral-900 "
       }
@@ -30,7 +30,7 @@ const Users = ({ user }) => {
         <div class="relative m-2">
           <img
             className={
-              clickedUser && clickedUser.clickedUser._id === user._id
+              clickedUser && clickedUser.clickedUser?._id === user._id
                 ? "h-10 w-10 rounded-full border-2 border-white dark:border-white"
                 : "h-10 w-10 rounded-full border-2  dark:border-white"
             }
@@ -44,9 +44,9 @@ const Users = ({ user }) => {
       </div>
       <div
         className={
-          clickedUser && clickedUser.clickedUser._id === user._id
-            ? "font-mono text-sm font-semibold capitalize text-white dark:text-white"
-            : "font-mono text-sm font-semibold capitalize text-gray-800 dark:text-white"
+          clickedUser && clickedUser.clickedUser?._id === user._id
+            ? "font-mono text-sm font-semibold capitalize tracking-wider text-white  dark:text-white"
+            : "font-mono text-sm font-semibold capitalize tracking-wider text-gray-800 dark:text-white"
         }
       >
         {user.username.length > 12

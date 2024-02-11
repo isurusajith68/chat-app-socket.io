@@ -63,7 +63,7 @@ const Inbox = () => {
   };
 
   const handleBack = () => {
-    window.location.reload();
+    useConversation.setState({ clickedUser: null });
   };
 
   return (
@@ -89,13 +89,14 @@ const Inbox = () => {
           />
         </div>
 
-        <div className="text-white">
-          <span className=" ml-2 font-bold capitalize text-[#0975f1] dark:text-white">
+        <div className="flex items-center justify-center text-white">
+          <img src={clickedUser?.profilePic} alt="avatar" className="h-5 w-5" />
+          <span className=" ml-2 font-semibold capitalize tracking-wider text-[#0975f1] dark:text-white">
             {clickedUser?.username}
           </span>
         </div>
       </div>
-      <div className="scrollbar mb-3 mt-3 overflow-y-scroll px-2 text-white ">
+      <div className="scrollbar mb-3 mt-3 flex h-full flex-col justify-start overflow-y-scroll px-2 text-white ">
         <MessageComponent />
       </div>
       <div className="flex items-center justify-center drop-shadow-lg">
