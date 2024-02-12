@@ -53,24 +53,27 @@ const MobileNav = ({ users }) => {
     }, 3000);
   };
   return (
-    <motion.div
+    <div
       className={
         nav
-          ? "fixed left-2 z-10 flex h-[97.5%] flex-col justify-between rounded-lg bg-neutral-200  p-5 shadow-2xl transition-all duration-150 dark:bg-neutral-800  sm:hidden"
-          : "fixed -left-[245px] z-10 flex h-[97.5%] flex-col justify-between rounded-lg bg-neutral-200  p-5 shadow-2xl dark:bg-neutral-800 sm:hidden"
+          ? "fixed z-10 left-0  flex h-full flex-col justify-between rounded-lg bg-neutral-200  p-5 shadow-2xl transition-all duration-150 dark:bg-neutral-800  sm:hidden"
+          : "fixed -left-[243px]  flex h-full flex-col justify-between rounded-lg bg-neutral-200  p-5 shadow-2xl dark:bg-neutral-800 sm:hidden"
       }
     >
       {shareModel && <ClipboardCopyButton shareModel={setShareModel} />}
-      <div onClick={handleNav} className="absolute -z-10 ml-[220px] mt-2 ">
+      <div
+        onClick={handleNav}
+        className="absolute ml-[220px] flex  h-full justify-center"
+      >
         {nav ? (
-          <div className="rounded-lg bg-neutral-200 p-1 dark:bg-neutral-800">
+          <div className="h-8 rounded-lg  bg-neutral-200 p-1 dark:bg-neutral-800">
             <AiOutlineClose
-              className="   text-black dark:bg-neutral-800 dark:text-white"
+              className="   text-black  dark:bg-neutral-800 dark:text-white"
               size={25}
             />
           </div>
         ) : (
-          <div className="rounded-lg bg-neutral-200 p-1 dark:bg-neutral-800">
+          <div className="h-8 rounded-lg bg-neutral-200 p-1 dark:bg-neutral-800">
             <AiOutlineMenu
               className="   text-black dark:text-white"
               size={25}
@@ -110,7 +113,7 @@ const MobileNav = ({ users }) => {
           />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 export default MobileNav;

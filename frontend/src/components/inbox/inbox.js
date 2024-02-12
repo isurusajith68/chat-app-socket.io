@@ -5,7 +5,7 @@ import MessageComponent from "./message";
 import { useConversation } from "../../zustand/useConversation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { IoArrowBackCircle } from "react-icons/io5";
+import { IoHomeSharp } from "react-icons/io5";
 import { PiWechatLogoFill } from "react-icons/pi";
 const Inbox = () => {
   const [sentMessage, setSentMessage] = React.useState("");
@@ -81,7 +81,13 @@ const Inbox = () => {
           : "flex h-full w-full  flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900 max-sm:hidden"
       }
     >
-      <div className="flex justify-between rounded-md p-2 shadow-lg">
+      <div className="ml-4 flex justify-between rounded-md p-1 ">
+        <div className="flex items-center justify-center text-white">
+          <img src={clickedUser?.profilePic} alt="avatar" className="h-5 w-5" />
+          <span className=" ml-2 font-semibold capitalize tracking-wider text-[#0975f1] dark:text-white">
+            {clickedUser?.username}
+          </span>
+        </div>
         <div
           className={
             clickedUser
@@ -90,17 +96,10 @@ const Inbox = () => {
           }
           onClick={handleBack}
         >
-          <IoArrowBackCircle
-            size={30}
+          <IoHomeSharp
+            size={20}
             className="cursor-pointer text-[#0975f1] dark:text-white"
           />
-        </div>
-
-        <div className="flex items-center justify-center text-white">
-          <img src={clickedUser?.profilePic} alt="avatar" className="h-5 w-5" />
-          <span className=" ml-2 font-semibold capitalize tracking-wider text-[#0975f1] dark:text-white">
-            {clickedUser?.username}
-          </span>
         </div>
       </div>
       <div className="scrollbar mb-3 mt-3 flex h-full flex-col justify-start overflow-y-scroll px-2 text-white ">

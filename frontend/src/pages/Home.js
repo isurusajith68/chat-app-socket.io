@@ -24,10 +24,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="-100 fixed z-50 flex h-full w-full items-center justify-center bg-neutral-900 p-2 dark:bg-neutral-100">
+    <div className="-100 fixed z-50 flex h-full w-full items-center justify-center bg-neutral-100  dark:bg-neutral-900">
       <SideBar users={users} />
       
-      <div className="dark:border-bg-neutral-100 border-neutral-900 border"></div>
+      <div className="dark:border-bg-neutral-100 border-neutral-200 h-full max-sm:hidden border"></div>
       <Inbox />
     </div>
   );
