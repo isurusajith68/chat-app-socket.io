@@ -34,7 +34,7 @@ export function ClipboardCopyButton({ shareModel }) {
         <button
           onMouseLeave={() => setCopied(false)}
           onClick={() => {
-            copy("npm i @material-tailwind/react");
+            copy("https://chat-app-mi6i.onrender.com");
             setCopied(true);
             setTimeout(() => {
               shareModel(false);
