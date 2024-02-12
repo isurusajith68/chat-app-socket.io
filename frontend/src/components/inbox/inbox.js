@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Input } from "@nextui-org/react";
 import { LuSend } from "react-icons/lu";
 import MessageComponent from "./message";
 import { useConversation } from "../../zustand/useConversation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { IoHomeSharp } from "react-icons/io5";
 import { PiWechatLogoFill } from "react-icons/pi";
+import { useSideBarContext } from "../../context/SideBarContext";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+
 const Inbox = () => {
   const [sentMessage, setSentMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
@@ -15,10 +17,13 @@ const Inbox = () => {
 
   const loggedInUser = JSON.parse(localStorage.getItem("authUser"));
 
+  const { nav, setNav } = useSideBarContext((state) => state.nav);
+  const handleNav = () => {
+    setNav(!nav);
+  };
   if (!clickedUser) {
     return (
       <div className="flex h-full w-full min-w-16 flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900 max-sm:hidden">
-    
         <div className="flex h-full flex-col items-center justify-center text-center">
           <PiWechatLogoFill
             size={100}
@@ -69,10 +74,6 @@ const Inbox = () => {
     }
   };
 
-  const handleBack = () => {
-    useConversation.setState({ clickedUser: null });
-  };
-
   return (
     <div
       className={
@@ -81,25 +82,29 @@ const Inbox = () => {
           : "flex h-full w-full  flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900 max-sm:hidden"
       }
     >
-      <div className="ml-4 flex justify-between rounded-md p-1 ">
+      <div className=" flex justify-between rounded-md p-1 shadow-md">
+        <div
+          onClick={handleNav}
+          className="flex items-center justify-center sm:hidden"
+        >
+          {nav ? (
+            <AiOutlineClose
+              className="   text-black  dark:bg-neutral-800 dark:text-white"
+              size={25}
+            />
+          ) : (
+            <AiOutlineMenu
+              className="   text-black dark:text-white"
+              size={25}
+            />
+          )}
+        </div>
+
         <div className="flex items-center justify-center text-white">
           <img src={clickedUser?.profilePic} alt="avatar" className="h-5 w-5" />
           <span className=" ml-2 font-semibold capitalize tracking-wider text-[#0975f1] dark:text-white">
             {clickedUser?.username}
           </span>
-        </div>
-        <div
-          className={
-            clickedUser
-              ? "hidden items-center justify-between text-white max-sm:flex"
-              : "hidden"
-          }
-          onClick={handleBack}
-        >
-          <IoHomeSharp
-            size={20}
-            className="cursor-pointer text-[#0975f1] dark:text-white"
-          />
         </div>
       </div>
       <div className="scrollbar mb-3 mt-3 flex h-full flex-col justify-start overflow-y-scroll px-2 text-white ">

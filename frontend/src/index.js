@@ -7,6 +7,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import { AuthProvider } from "./context/AuthContext";
 import { SocketContextProvider } from "./context/Socket";
 import { DarkModeContextProvider } from "./context/DarkModeContext";
+import { SideBarContextProvider } from "./context/SideBarContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,9 +15,11 @@ root.render(
     <AuthProvider>
       <NextUIProvider>
         <DarkModeContextProvider>
-          <SocketContextProvider>
-            <App />
-          </SocketContextProvider>
+          <SideBarContextProvider>
+            <SocketContextProvider>
+              <App />
+            </SocketContextProvider>
+          </SideBarContextProvider>
         </DarkModeContextProvider>
       </NextUIProvider>
     </AuthProvider>

@@ -9,8 +9,8 @@ import { ClipboardCopyButton } from "../shareModel";
 import axios from "axios";
 import { PiWechatLogoFill } from "react-icons/pi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { motion } from "framer-motion";
 import MobileNav from "../mobileNav";
+import { useSideBarContext } from "../../context/SideBarContext";
 
 const Sidebar = ({ users }) => {
   const [shareModel, setShareModel] = useState(false);
@@ -35,6 +35,11 @@ const Sidebar = ({ users }) => {
 
   const clickedUser = useConversation((state) => state.clickedUser);
   const loggedInUser = JSON.parse(localStorage.getItem("authUser"));
+  const { nav, setNav } = useSideBarContext((state) => state.nav);
+
+  const handleNav = () => {
+    setNav(!nav);
+  };
   const openShareModal = () => {
     setShareModel(true);
 
@@ -53,10 +58,20 @@ const Sidebar = ({ users }) => {
             : "flex h-full flex-col  justify-between rounded-lg bg-neutral-100 p-5  dark:bg-neutral-900 max-sm:h-full max-sm:w-full   sm:hidden"
         }
       >
+          <div onClick={handleNav} className="">
+            {nav ? (
+              <AiOutlineClose
+                className="   text-black  dark:bg-neutral-800 dark:text-white"
+                size={25}
+              />
+            ) : (
+              <AiOutlineMenu
+                className="   text-black dark:text-white"
+                size={25}
+              />
+            )}
+          </div>
         <div className="flex h-full flex-col items-center justify-center text-center">
-          {/* <div onClick={handleNav} className="block  ">
-            {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-          </div> */}
           <PiWechatLogoFill
             size={100}
             className="text-[#0975f1] dark:text-white"

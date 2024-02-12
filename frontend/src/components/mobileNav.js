@@ -7,25 +7,23 @@ import { CgLogOut } from "react-icons/cg";
 import { useConversation } from "../zustand/useConversation";
 import { ClipboardCopyButton } from "../components/shareModel";
 import axios from "axios";
-import { PiWechatLogoFill } from "react-icons/pi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { motion } from "framer-motion";
+import { useSideBarContext } from "../context/SideBarContext";
 
 const MobileNav = ({ users }) => {
   const [shareModel, setShareModel] = useState(false);
-  const [nav, setNav] = useState(false);
-
-  const handleNav = () => {
-    setNav(!nav);
-  };
 
   const clickedUser = useConversation((state) => state.clickedUser);
-
+  const { nav, setNav } = useSideBarContext((state) => state.nav);
   useEffect(() => {
     if (clickedUser) {
       setNav(false);
     }
-  }, [clickedUser]);
+  }, [clickedUser, setNav]);
+
+  const handleNav = () => {
+    setNav(!nav);
+  };
 
   const logoutUser = async () => {
     try {
@@ -56,33 +54,27 @@ const MobileNav = ({ users }) => {
     <div
       className={
         nav
-          ? "fixed z-10 left-0  flex h-full flex-col justify-between rounded-lg bg-neutral-200  p-5 shadow-2xl transition-all duration-150 dark:bg-neutral-800  sm:hidden"
-          : "fixed -left-[243px]  flex h-full flex-col justify-between rounded-lg bg-neutral-200  p-5 shadow-2xl dark:bg-neutral-800 sm:hidden"
+          ? "rounded-;-lg fixed left-0  z-10 flex h-full flex-col justify-between bg-neutral-200  p-5 shadow-2xl transition-all duration-150 dark:bg-neutral-800  sm:hidden"
+          : "fixed -left-[300px]  flex h-full flex-col justify-between rounded-l-lg bg-neutral-200  p-5 shadow-2xl dark:bg-neutral-800 sm:hidden"
       }
     >
       {shareModel && <ClipboardCopyButton shareModel={setShareModel} />}
-      <div
-        onClick={handleNav}
-        className="absolute ml-[220px] flex  h-full justify-center"
-      >
-        {nav ? (
-          <div className="h-8 rounded-lg  bg-neutral-200 p-1 dark:bg-neutral-800">
+
+      <div className="flex  items-center justify-between gap-3">
+        <SearchBar />
+        <div onClick={handleNav} className="flex items-center justify-center">
+          {nav ? (
             <AiOutlineClose
               className="   text-black  dark:bg-neutral-800 dark:text-white"
               size={25}
             />
-          </div>
-        ) : (
-          <div className="h-8 rounded-lg bg-neutral-200 p-1 dark:bg-neutral-800">
+          ) : (
             <AiOutlineMenu
               className="   text-black dark:text-white"
               size={25}
             />
-          </div>
-        )}
-      </div>
-      <div className="flex  items-start">
-        <SearchBar />
+          )}
+        </div>
       </div>
 
       <div className="scrollbar mt-3 h-full overflow-y-scroll p-2">
