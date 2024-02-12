@@ -58,14 +58,14 @@ function MessageComponent() {
                 {message.senderId === loggedInUser.userId ? (
                   <div
                     key={index}
-                    className={`my-4 flex flex-row-reverse items-start justify-start gap-2.5 ${shakeClass}`}
+                    className={` my-4 mr-5 flex flex-row-reverse items-start justify-start gap-2.5 ${shakeClass}`}
                   >
                     <img
                       className="h-8 w-8 rounded-full"
                       src={loggedInUser.profilePic}
                       alt="J"
                     />
-                    <div className="leading-1.5  flex w-full max-w-[320px] flex-col rounded-s-xl rounded-ee-xl  border-gray-200  bg-slate-200 p-4 dark:bg-neutral-700">
+                    <div className="leading-1.5   flex w-full max-w-[320px] flex-col rounded-s-xl  rounded-ee-xl border-gray-200 bg-slate-200 p-4 dark:bg-neutral-700">
                       <div className="flex items-center space-x-2 rtl:space-x-reverse">
                         <span className="text-sm font-semibold capitalize text-gray-900 dark:text-white">
                           {loggedInUser.username}
@@ -89,7 +89,7 @@ function MessageComponent() {
                       src={clickedUser.profilePic}
                       alt="J"
                     />
-                    <div className="leading-1.5 flex w-full max-w-[320px] flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-slate-200 p-4 dark:bg-neutral-700">
+                    <div className="leading-1.5  flex w-full max-w-[320px] flex-col rounded-e-xl  rounded-es-xl border-gray-200 bg-slate-200 p-4 dark:bg-neutral-700">
                       <div className="flex items-center space-x-2 rtl:space-x-reverse">
                         <span className="text-sm font-semibold capitalize text-gray-900 dark:text-white">
                           {clickedUser.username}

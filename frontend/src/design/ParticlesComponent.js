@@ -2,6 +2,7 @@ import Particles from "react-tsparticles";
 import { useCallback } from "react";
 // import { loadFull } from "tsparticles";
 import { loadSlim } from "tsparticles-slim";
+import { useDarkModeContext } from "../context/DarkModeContext";
 
 export default function ParticlesComponent() {
   const particlesInit = useCallback(async (engine) => {
@@ -13,6 +14,10 @@ export default function ParticlesComponent() {
   const particlesLoaded = useCallback(async (container) => {
     await console.log(container);
   }, []);
+
+  const dark = useDarkModeContext((state) => state.darkMode);
+
+  console.log(dark.darkMode);
 
   const options = {
     fullScreen: false,
@@ -111,7 +116,7 @@ export default function ParticlesComponent() {
         interactivity: {
           events: {
             onClick: {
-              enable: true,
+              enable: false,
               mode: "push",
             },
             onHover: {
@@ -122,7 +127,7 @@ export default function ParticlesComponent() {
           },
           modes: {
             push: {
-              quantity: 10,
+              quantity: 5,
             },
             repulse: {
               distance: 100,
@@ -132,10 +137,10 @@ export default function ParticlesComponent() {
         },
         particles: {
           color: {
-            value: ["#000", "#0975f1"],
+            value: dark.darkMode ? "#fff" : "#000",
           },
           links: {
-            color: ["#000", "#0975f1"],
+            color: dark.darkMode ? "#fff" : "#000",
             // color: "004d26",
             distance: 150,
             enable: true,

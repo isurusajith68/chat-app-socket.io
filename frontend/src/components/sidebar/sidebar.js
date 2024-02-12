@@ -4,15 +4,27 @@ import Users from "./users";
 import { Spinner } from "@nextui-org/react";
 import { IoIosShareAlt } from "react-icons/io";
 import { CgLogOut } from "react-icons/cg";
-import { Logout } from "../../api/logout";
 import { useConversation } from "../../zustand/useConversation";
 import { ClipboardCopyButton } from "../shareModel";
+import axios from "axios";
 
 const Sidebar = ({ users }) => {
   const [shareModel, setShareModel] = useState(false);
 
-  const logoutUser = () => {
-    Logout();
+  const logoutUser = async () => {
+    try {
+      const res = await axios.post("api/auth/logout", {
+        withCredentials: true,
+      });
+      if (res.status === 200) {
+        localStorage.removeItem("authUser");
+        window.location.href = "/login";
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        return error.response.status;
+      }
+    }
     localStorage.removeItem("authUser");
     window.location.reload();
   };
@@ -22,10 +34,10 @@ const Sidebar = ({ users }) => {
 
   const openShareModal = () => {
     setShareModel(true);
-    
-   setTimeout(() => {
+
+    setTimeout(() => {
       setShareModel(false);
-   }, 1000);
+    }, 3000);
   };
 
   return (

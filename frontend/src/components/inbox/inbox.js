@@ -3,10 +3,10 @@ import { Input } from "@nextui-org/react";
 import { LuSend } from "react-icons/lu";
 import MessageComponent from "./message";
 import { useConversation } from "../../zustand/useConversation";
-import chat from "../../assets/chat.png";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { IoArrowBackCircle } from "react-icons/io5";
+import { PiWechatLogoFill } from "react-icons/pi";
 const Inbox = () => {
   const [sentMessage, setSentMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
@@ -18,16 +18,23 @@ const Inbox = () => {
   if (!clickedUser) {
     return (
       <div className="flex h-full w-full min-w-16 flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900 max-sm:hidden">
-        <div className="flex h-full flex-col items-center justify-center">
-          <img src={chat} alt="logo" className="h-20 w-20" />
-          <h1 className="font-serif text-3xl  text-[#0975f1]">
-            Welcome to Chat
+    
+        <div className="flex h-full flex-col items-center justify-center text-center">
+          <PiWechatLogoFill
+            size={100}
+            className="text-[#0975f1] dark:text-white"
+          />
+          <h1 className=" text-2xl  font-bold tracking-widest text-[#0975f1] dark:text-white">
+            Hey {loggedInUser.username} 👋
           </h1>
-          <h1 className="font-serif text-xl font-medium capitalize text-rose-500">
-            {loggedInUser.username}
+          <h1 className="mt-2 text-xl font-semibold tracking-widest text-[#0975f1] dark:text-white">
+            Welcome to Chat App
           </h1>
-          <span className="mt-1 font-serif text-sm font-thin text-yellow-400">
-            Select a user to start chat 😎😎
+          <span
+            className="
+            mt-2  text-sm  font-semibold tracking-widest text-[#0975f1] dark:text-white"
+          >
+            Start a conversation with your friends 🚀
           </span>
         </div>
       </div>

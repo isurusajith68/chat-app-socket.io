@@ -34,12 +34,12 @@
 }
 
 .test {
-  animation: rotate2 2s linear infinite;
-  animation-play-state: paused;
+  animation: rotate2 10s linear infinite;
+  /* animation-play-state: paused; */
+  animation-play-state: running;
 }
 .test:hover {
-  animation-play-state: running;
-  
+  animation-play-state: paused;
 }
 @keyframes rotate2 {
   0% {
@@ -49,7 +49,6 @@
     transform: rotate(0deg);
   }
 }
-
 
 .share-icon:hover {
   cursor: pointer;

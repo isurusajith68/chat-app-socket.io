@@ -6,7 +6,7 @@ const DarkMode = () => {
   const { darkMode, setDarkMode } = useDarkModeContext();
 
   return (
-    <div className="fixed bottom-[105px]  left-[95%] z-[999] h-[20px]  w-full max-md:left-[82%]">
+    <div className="fixed bottom-[105px]  left-[95%] z-[999] h-[20px]  w-full  max-md:left-[82%]">
       <div
         className="borderRotation_dark_mode"
         onClick={() => {
@@ -14,7 +14,7 @@ const DarkMode = () => {
           localStorage.setItem("darkMode", !darkMode);
         }}
       >
-        <div className="flex h-12 w-12  items-center justify-center rounded-full">
+        <div className="flex h-12 w-12  items-center justify-center rounded-full ">
           {darkMode ? (
             <IoMdSunny
               className="test"
