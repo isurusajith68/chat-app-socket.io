@@ -23,9 +23,9 @@ const Sidebar = ({ users }) => {
   const openShareModal = () => {
     setShareModel(true);
     
-    setTimeOut(()=>{
+   setTimeout(() => {
       setShareModel(false);
-    },1000)
+   }, 1000);
   };
 
   return (
