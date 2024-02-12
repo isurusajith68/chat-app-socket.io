@@ -55,7 +55,7 @@ const MobileNav = ({ users }) => {
       className={
         nav
           ? "rounded-;-lg fixed left-0  z-10 flex h-full flex-col justify-between bg-neutral-200  p-5 shadow-2xl transition-all duration-150 dark:bg-neutral-800  sm:hidden"
-          : "fixed -left-[300px]  flex h-full flex-col justify-between rounded-l-lg bg-neutral-200  p-5 shadow-2xl dark:bg-neutral-800 sm:hidden"
+          : "fixed -left-[350px]  flex h-full flex-col justify-between rounded-l-lg bg-neutral-200  p-5 shadow-2xl dark:bg-neutral-800 sm:hidden"
       }
     >
       {shareModel && <ClipboardCopyButton shareModel={setShareModel} />}
