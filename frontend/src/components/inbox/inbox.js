@@ -10,7 +10,6 @@ import { useSideBarContext } from "../../context/SideBarContext";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 import EmojiPicker from "emoji-picker-react";
-import { set } from "mongoose";
 
 const Inbox = () => {
   const [sentMessage, setSentMessage] = React.useState("");
@@ -85,6 +84,11 @@ const Inbox = () => {
           ? "flex h-full w-full  flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900 max-sm:h-full max-sm:w-full "
           : "flex h-full w-full  flex-col justify-between rounded-lg bg-neutral-100 p-5 dark:bg-neutral-900 max-sm:hidden"
       }
+      onClick={() => {
+        if (isEmoji) {
+          setIsEmoji(false);
+        }
+      }}
     >
       <div className=" flex justify-between rounded-md p-1 shadow-md">
         <div
