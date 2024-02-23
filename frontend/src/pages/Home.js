@@ -3,6 +3,7 @@ import axios from "axios";
 import SideBar from "../components/sidebar/sidebar";
 import Inbox from "../components/inbox/inbox";
 import { Logout } from "../api/logout";
+import { useConversation } from "../zustand/useConversation";
 const Home = () => {
   const [users, setUsers] = useState([]);
 
@@ -14,6 +15,8 @@ const Home = () => {
         });
 
         setUsers(res.data);
+        useConversation.setUsers(res.data);
+        console.log("res")
       } catch (error) {
         if (error.response?.status === 401) {
           Logout();
@@ -23,11 +26,13 @@ const Home = () => {
     getUser();
   }, []);
 
+  // console.log(useConversation((state) => state.users));
+
   return (
     <div className="-100 fixed z-50 flex h-full w-full items-center justify-center bg-neutral-100  dark:bg-neutral-900">
       <SideBar users={users} />
-      
-      <div className="dark:border-bg-neutral-100 border-neutral-200 h-full max-sm:hidden border"></div>
+
+      <div className="dark:border-bg-neutral-100 h-full border border-neutral-200 max-sm:hidden"></div>
       <Inbox />
     </div>
   );

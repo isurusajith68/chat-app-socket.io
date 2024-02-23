@@ -9,9 +9,12 @@ import { PiWechatLogoFill } from "react-icons/pi";
 import { useSideBarContext } from "../../context/SideBarContext";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
+import EmojiPicker from "emoji-picker-react";
+
 const Inbox = () => {
   const [sentMessage, setSentMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isEmoji, setIsEmoji] = React.useState(false);
 
   const clickedUser = useConversation((state) => state.clickedUser);
 
@@ -20,6 +23,34 @@ const Inbox = () => {
   const { nav, setNav } = useSideBarContext((state) => state.nav);
   const handleNav = () => {
     setNav(!nav);
+  };
+  const sendMessage = async () => {
+    if (sentMessage === "") {
+      return toast.error("message is empty");
+    }
+
+    try {
+      setIsLoading(true);
+      const res = await axios.post(
+        `api/messages/send/${clickedUser._id}`,
+        {
+          message: sentMessage,
+        },
+        {
+          withCredentials: true,
+        },
+      );
+      setIsLoading(false);
+      setSentMessage("");
+    
+
+      useConversation.setState({
+        messages: [...useConversation.getState().messages, res?.data],
+      });
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error?.response?.data?.error, "error");
+    }
   };
   if (!clickedUser) {
     return (
@@ -45,34 +76,6 @@ const Inbox = () => {
       </div>
     );
   }
-
-  const sendMessage = async () => {
-    if (sentMessage === "") {
-      return toast.error("message is empty");
-    }
-
-    try {
-      setIsLoading(true);
-      const res = await axios.post(
-        `api/messages/send/${clickedUser._id}`,
-        {
-          message: sentMessage,
-        },
-        {
-          withCredentials: true,
-        },
-      );
-      setIsLoading(false);
-      setSentMessage("");
-
-      useConversation.setState({
-        messages: [...useConversation.getState().messages, res?.data],
-      });
-    } catch (error) {
-      setIsLoading(false);
-      console.log(error?.response?.data?.error, "error");
-    }
-  };
 
   return (
     <div
@@ -110,7 +113,25 @@ const Inbox = () => {
       <div className="scrollbar mb-3 mt-3 flex h-full flex-col justify-start overflow-y-scroll px-2 text-white ">
         <MessageComponent />
       </div>
+      {isEmoji && (
+        <div className="absolute bottom-16 z-50 mb-2">
+          <EmojiPicker
+            onEmojiClick={(event, emojiObject) => {
+              console.log(event.emoji);
+              setSentMessage(sentMessage + event.emoji);
+            }}
+          />
+        </div>
+      )}
       <div className="flex items-center justify-center drop-shadow-lg">
+        <div
+          className="mr-2 cursor-pointer rounded-full border border-[#0975f1] p-1"
+          //click to add emoji open emoji picker
+          onClick={() => setIsEmoji(!isEmoji)}
+        >
+          😀
+        </div>
+
         <Input
           radius="lg"
           color="primary"
@@ -122,6 +143,11 @@ const Inbox = () => {
           onChange={(e) => setSentMessage(e.target.value)}
           value={sentMessage}
           placeholder="Type a message..."
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              sendMessage();
+            }
+          }}
         />
         <div
           onClick={() => sendMessage()}
