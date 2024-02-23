@@ -10,6 +10,7 @@ import { useSideBarContext } from "../../context/SideBarContext";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 import EmojiPicker from "emoji-picker-react";
+import { set } from "mongoose";
 
 const Inbox = () => {
   const [sentMessage, setSentMessage] = React.useState("");
@@ -42,7 +43,7 @@ const Inbox = () => {
       );
       setIsLoading(false);
       setSentMessage("");
-    
+      setIsEmoji(false);
 
       useConversation.setState({
         messages: [...useConversation.getState().messages, res?.data],
@@ -146,6 +147,7 @@ const Inbox = () => {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               sendMessage();
+              setIsEmoji(false);
             }
           }}
         />
