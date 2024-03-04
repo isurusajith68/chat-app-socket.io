@@ -11,6 +11,7 @@ import { PiWechatLogoFill } from "react-icons/pi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import MobileNav from "../mobileNav";
 import { useSideBarContext } from "../../context/SideBarContext";
+import Footer from "../Footer";
 
 const Sidebar = ({ users }) => {
   const [shareModel, setShareModel] = useState(false);
@@ -58,19 +59,19 @@ const Sidebar = ({ users }) => {
             : "flex h-full flex-col  justify-between rounded-lg bg-neutral-100 p-5  dark:bg-neutral-900 max-sm:h-full max-sm:w-full   sm:hidden"
         }
       >
-          <div onClick={handleNav} className="">
-            {nav ? (
-              <AiOutlineClose
-                className="   text-black  dark:bg-neutral-800 dark:text-white"
-                size={25}
-              />
-            ) : (
-              <AiOutlineMenu
-                className="   text-black dark:text-white"
-                size={25}
-              />
-            )}
-          </div>
+        <div onClick={handleNav} className="">
+          {nav ? (
+            <AiOutlineClose
+              className="   text-black  dark:bg-neutral-800 dark:text-white"
+              size={25}
+            />
+          ) : (
+            <AiOutlineMenu
+              className="   text-black dark:text-white"
+              size={25}
+            />
+          )}
+        </div>
         <div className="flex h-full flex-col items-center justify-center text-center">
           <PiWechatLogoFill
             size={100}
@@ -89,6 +90,8 @@ const Sidebar = ({ users }) => {
             Start a conversation with your friends 🚀
           </span>
         </div>
+        <div className="border"></div>
+        <Footer />
       </div>
 
       <div
