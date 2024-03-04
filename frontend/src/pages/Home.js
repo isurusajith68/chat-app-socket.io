@@ -4,6 +4,7 @@ import SideBar from "../components/sidebar/sidebar";
 import Inbox from "../components/inbox/inbox";
 import { Logout } from "../api/logout";
 import { useConversation } from "../zustand/useConversation";
+import Footer from "../components/Footer";
 const Home = () => {
   const [users, setUsers] = useState([]);
 
@@ -16,7 +17,7 @@ const Home = () => {
 
         setUsers(res.data);
         useConversation.setUsers(res.data);
-        console.log("res")
+        console.log("res");
       } catch (error) {
         if (error.response?.status === 401) {
           Logout();
@@ -33,7 +34,10 @@ const Home = () => {
       <SideBar users={users} />
 
       <div className="dark:border-bg-neutral-100 h-full border border-neutral-200 max-sm:hidden"></div>
-      <Inbox />
+
+        <Inbox />
+        {/* <Footer /> */}
+     
     </div>
   );
 };

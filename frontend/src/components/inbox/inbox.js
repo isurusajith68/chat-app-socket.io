@@ -10,6 +10,7 @@ import { useSideBarContext } from "../../context/SideBarContext";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 import EmojiPicker from "emoji-picker-react";
+import Footer from "../Footer";
 
 const Inbox = () => {
   const [sentMessage, setSentMessage] = React.useState("");
@@ -73,6 +74,10 @@ const Inbox = () => {
             Start a conversation with your friends 🚀
           </span>
         </div>
+        <div className="border">
+
+        </div>
+        <Footer />
       </div>
     );
   }
@@ -136,7 +141,6 @@ const Inbox = () => {
         >
           😀
         </div>
-
         <Input
           radius="lg"
           color="primary"
@@ -169,6 +173,7 @@ const Inbox = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
